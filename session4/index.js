@@ -48,6 +48,32 @@ app.patch("/team/:id", (req, res) => {
     info.
   });
 });
+app.delete("/team/:id", (req, res) => {
+  const { id } = req.params;
+
+  fs.readFile("teams.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    const info = JSON.parse(data);
+    const idx = info.findIndex((team) => team.id == id);
+    // res.send(${idx});
+    if (idx == -1) {
+      res.status(404).send("Team not found");
+      return;
+    }
+    info.splice(idx, 1);
+    fs.writeFile("teams.json", JSON.stringify(info), (err) => {
+      if (err) {
+        console.log(err);
+        return;
+      }res.send("successfull !");
+    });
+    
+  });
+});
 app.listen(5000, () => {
   console.log("shoura on da code");
 });

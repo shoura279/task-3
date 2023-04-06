@@ -1,2 +1,2 @@
 # task-3
-just a task
+## this is just a simple CURD in json file using fs module

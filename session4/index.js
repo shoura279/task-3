@@ -48,6 +48,9 @@ app.patch("/team/:id", (req, res) => {
     info.
   });
 });
+
+//DELET DATA
+
 app.delete("/team/:id", (req, res) => {
   const { id } = req.params;
 
